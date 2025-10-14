@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+	--font-sans: 'Inter', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+
+	--color-alizarin-crimson: oklch(56.66% 0.21206 27.393);
+	--color-alizarin-crimson-50: oklch(96.153% 0.01298 17.382);
+	--color-alizarin-crimson-100: oklch(88.858% 0.04517 18.035);
+	--color-alizarin-crimson-200: oklch(77.237% 0.09986 19.596);
+	--color-alizarin-crimson-300: oklch(68.359% 0.14947 21.788);
+	--color-alizarin-crimson-400: oklch(61.188% 0.19302 24.911);
+	--color-alizarin-crimson-500: oklch(56.66% 0.21206 27.393);
+	--color-alizarin-crimson-600: oklch(47.126% 0.17391 27.149);
+	--color-alizarin-crimson-700: oklch(37.104% 0.13331 26.706);
+	--color-alizarin-crimson-800: oklch(26.418% 0.08868 25.703);
+	--color-alizarin-crimson-900: oklch(14.507% 0.03754 22.966);
+	--color-alizarin-crimson-950: oklch(0% 0 none);
+}
