@@ -19,23 +19,15 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # Copy source code
-COPY . .
 
-# Build the Nuxt app
-# Note: Nuxt 3 uses `.output` by default in production builds
+# Skip optional deps and postinstall scripts
+# (Bun honors npm_config_optional and --ignore-scripts)
+ENV npm_config_optional=false
+RUN bun install --frozen-lockfile --ignore-scripts
+
+# Copy the rest and build
+COPY . .
 RUN bun run build
 
-# Use a minimal stage for production (optional but recommended)
-FROM oven/bun:1 AS runner
-
-WORKDIR /app
-
-# Copy only the necessary artifacts
-COPY --from=base /app/.output ./.output
-COPY --from=base /app/node_modules ./node_modules
-
-ENV HOST=0.0.0.0
 EXPOSE 3000
-
-# Start the server
 CMD ["bun", ".output/server/index.mjs"]
