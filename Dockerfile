@@ -13,7 +13,7 @@ ENV HOST=0.0.0.0
 WORKDIR /app
 
 # Copy dependency manifests
-COPY package.json bun.lockb .npmrc ./
+COPY package.json bun.lockb ./
 
 # Install dependencies with Bun
 RUN bun install --frozen-lockfile
