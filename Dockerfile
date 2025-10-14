@@ -7,7 +7,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 # Copy lockfile(s) and install
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm ci --prefer-offline
 
 FROM node:22-slim AS build
