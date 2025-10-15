@@ -17,16 +17,16 @@ Our studio right now consists of 3 core members: me (@Type-32), Alpinecore (@ALp
 
 We have numerous projects, but the ones that stands out the most are:
 
-1. WYSIWYG CodeMirror 6 based Obsidian-like Markdown Editor Component: https\://github.com/Type-32/codemirror-rich-obsidian
-2. SQLite ORM-like Wrapper for Tauri v2's SQLite Database Plugin: https\://github.com/Type-32/tauri-sqlite-orm
-3. A *Minecraft Create Mod* Addon that adds *Timeless and Classics: Zero* Ammunition Automation Recipes: https\://github.com/CTRL-Neo-Studios/PreciseManufacturing
-4. An Obsidian-like Writer+Note-taking Oriented Markdown Editing Software: https\://github.com/CTRL-Neo-Studios/vertex
-5. A simple CLI object library in C#: https\://github.com/CTRL-Neo-Studios/simple-cli
-6. Small, Fast, Utilitarian, *Raycast*-like Shortcuts App made using Tauri v2: https\://github.com/CTRL-Neo-Studios/cubit
-7. C# Port of `stackblitz/alien-signals` : https\://github.com/CTRL-Neo-Studios/csharp-alien-signals
-8. Our Quickstarting Nuxt UI v4 + Tauri v2 + Nuxt v4 App Template: https\://github.com/CTRL-Neo-Studios/NuxtUI-Tauri-App-Template
-9. Our Quickstarting Nuxt UI v4 + Nuxt v4 + DrizzleORM-PostgreSQL Webapp Template: https\://github.com/CTRL-Neo-Studios/NuxtUI-DrizzleORM-pg-template
-10. Our Original Markdown Editor **(now deprecated)**: https\://github.com/CTRL-Neo-Studios/Slate
+1. WYSIWYG CodeMirror 6 based Obsidian-like Markdown Editor Component: <https://github.com/Type-32/codemirror-rich-obsidian>
+2. SQLite ORM-like Wrapper for Tauri v2's SQLite Database Plugin: <https://github.com/Type-32/tauri-sqlite-orm>
+3. A *Minecraft Create Mod* Addon that adds *Timeless and Classics: Zero* Ammunition Automation Recipes: <https://github.com/CTRL-Neo-Studios/PreciseManufacturing>
+4. An Obsidian-like Writer+Note-taking Oriented Markdown Editing Software: <https://github.com/CTRL-Neo-Studios/vertex>
+5. A simple CLI object library in C#: <https://github.com/CTRL-Neo-Studios/simple-cli>
+6. Small, Fast, Utilitarian, *Raycast*-like Shortcuts App made using Tauri v2: <https://github.com/CTRL-Neo-Studios/cubit>
+7. C# Port of `stackblitz/alien-signals` : <https://github.com/CTRL-Neo-Studios/csharp-alien-signals>
+8. Our Quickstarting Nuxt UI v4 + Tauri v2 + Nuxt v4 App Template: <https://github.com/CTRL-Neo-Studios/NuxtUI-Tauri-App-Template>
+9. Our Quickstarting Nuxt UI v4 + Nuxt v4 + DrizzleORM-PostgreSQL Webapp Template: <https://github.com/CTRL-Neo-Studios/NuxtUI-DrizzleORM-pg-template>
+10. Our Original Markdown Editor **(now deprecated)**: <https://github.com/CTRL-Neo-Studios/Slate>
 
 You can browse all of them.
 
