@@ -31,3 +31,5 @@ We have numerous projects, but the ones that stands out the most are:
 You can browse all of them.
 
 As a small studio, we appreciate all kinds of contributions, whether its issue-tracking or pull-requests, we have an open-source passion in our hearts. All contributions will be notably credited, either in our READMEs or our code.
+
+With all that said, we hope you enjoy your stay here, or on our GitHub.
