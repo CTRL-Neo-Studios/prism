@@ -1,30 +1,21 @@
-# syntax=docker/dockerfile:1.6
+FROM node:20-slim
 
-# 1) Dependencies (with toolchain for native addons)
-FROM node:22-slim AS deps
+# Install pnpm directly (faster than corepack)
+RUN npm install -g bun
+
 WORKDIR /app
-
-# Install build tools for node-gyp/native modules (better-sqlite3, sharp, etc.)
-RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
-
-# Copy lockfiles for cached installs
-COPY package.json package-lock.json ./
-# Deterministic + faster installs in CI
-RUN npm ci --prefer-offline
-
-# 2) Build
-FROM node:22-slim AS build
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY package*.json bun.lock ./
+RUN node --max-old-space-size=8000
 COPY . .
-ENV NODE_ENV=production
-RUN npm run build
 
-# 3) Runner (minimal runtime image)
-FROM node:22-slim AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-# Copy only the built Nitro output
-COPY --from=build /app/.output ./.output
+RUN bun install
+RUN bun pm trust --all
+RUN bun run build
+
+#COPY /app/.output /app/.output
+#COPY /app/node_modules /app/node_modules
+
+ENV HOST 0.0.0.0
 EXPOSE 3000
 CMD ["node", ".output/server/index.mjs"]
+#CMD ["pnpm", "start"]
