@@ -4,8 +4,7 @@
 
 <template>
 	<UBlogPosts>
-		<UBlogPost
-		/>
+		<UBlogPost/>
 	</UBlogPosts>
 </template>
 

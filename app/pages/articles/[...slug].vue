@@ -71,6 +71,7 @@ const formatDate = (dateString: string) => {
 					<ContentRenderer
 						v-if="page.body"
 						:value="page"
+						class="prose dark:prose-invert max-w-none"
 					/>
 					<UContentSurround :surround />
 				</UPageBody>
