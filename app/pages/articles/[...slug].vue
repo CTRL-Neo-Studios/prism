@@ -2,11 +2,10 @@
 import {useArticles} from "~/composables/core/useArticles";
 
 const $route = useRoute()
-const articlePathSlug = computed(() => ($route.params.slug as string[]).join('/'))
 const $art = useArticles()
 
-const {data: page} = await useAsyncData(articlePathSlug, () => $art.getArticle(unref(articlePathSlug)))
-const {data: surround} = await useAsyncData(() => $art.getArticleSurround(unref(articlePathSlug)))
+const {data: page} = await useAsyncData($route.path, () => $art.getArticle($route.path))
+const {data: surround} = await useAsyncData(() => $art.getArticleSurround($route.path))
 
 const title = unref(page)?.seo?.title || unref(page)?.title
 const description = unref(page)?.seo?.description || unref(page)?.description

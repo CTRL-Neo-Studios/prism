@@ -1,6 +1,6 @@
-export default eventHandler(async (event) => {
-	const { slug } = await readBody<{slug: string}>(event)
-	const surround = await queryCollectionItemSurroundings(event, 'articles', '/' + slug, {
+export default defineEventHandler(async (event) => {
+	const { path } = await readBody<{path: string}>(event)
+	const surround = await queryCollectionItemSurroundings(event, 'articles', path, {
 		fields: ['description']
 	})
 	return surround

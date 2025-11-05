@@ -1,17 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-				compatibilityDate: '2025-07-15',
-				devtools: {enabled: true},
-				css: ['~/assets/css/main.css'],
-				modules: [
-				 '@nuxt/content',
-				 '@nuxt/image',
-				 '@nuxt/ui',
-				 '@nuxtjs/mdc'
-				],
-				content: {
-								preview: {
-												api: 'https://api.nuxt.studio'
-								}
-				}
+	compatibilityDate: '2025-07-15',
+	devtools: {enabled: true},
+	css: ['~/assets/css/main.css'],
+	modules: [
+		'@nuxt/content',
+		'@nuxt/image',
+		'@nuxt/ui',
+		'@nuxtjs/mdc'
+	],
+	content: {
+		preview: {
+			api: 'https://api.nuxt.studio'
+		}
+	}
 })

@@ -1,23 +1,27 @@
 export function useArticles() {
 	async function getAllArticles() {
-		return await $fetch('/api/v1/articles')
+		return await $fetch('/api/v1/articles', {
+			method: 'get'
+		})
 	}
 
-	async function getArticle(slug: string) {
-		return await $fetch(`/api/v1/articles/${slug}`)
+	async function getArticle(path: string) {
+		return await $fetch(`/api/v1/articles/${path}`, {
+			method: 'get'
+		})
 	}
 
-	async function getArticleSurround(slug: string) {
+	async function getArticleSurround(path: string) {
 		return await $fetch(`/api/v1/articles/surround`, {
 			method: 'get',
 			body: {
-				slug: slug
+				path: path
 			}
 		})
 	}
 
-	async function toArticle(slug: string) {
-		await navigateTo(`/articles/${slug}`)
+	async function toArticle(path: string) {
+		await navigateTo(path)
 	}
 
 	return {

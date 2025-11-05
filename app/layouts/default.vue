@@ -17,6 +17,11 @@ const navLinks = ref<NavigationMenuItem[]>([
 		label: 'Articles',
 		icon: 'i-lucide-article',
 		to: '/articles'
+	},
+	{
+		label: 'Photography',
+		icon: 'i-lucide-album',
+		to: '/gallery'
 	}
 ])
 </script>
