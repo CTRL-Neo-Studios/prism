@@ -3,24 +3,19 @@ import type {Article} from "#shared/types/content_types";
 export function useGallery() {
 
     async function getAllImages() {
-        return await $fetch<Article[]>('/api/v1/gallery', {
-			method: 'get'
-		})
+        return await queryCollection('gallery')
+			.order('date', 'DESC')
+			.all()
     }
 
     async function getGalleryImage(path: string) {
-        return await $fetch<Article>(`/api/v1/gallery/${path}`, {
-			method: 'get'
-		})
+        return await queryCollection('gallery').path(path).first()
     }
 
     async function getSurroundingImages(path: string) {
-        return await $fetch<Article[]>(`/api/v1/gallery/surround`, {
-            method: 'get',
-            body: {
-				path: path
-            }
-        })
+        return queryCollectionItemSurroundings('gallery', path, {
+			fields: ['description']
+		});
     }
 
     async function toGalleryImage(path: string) {

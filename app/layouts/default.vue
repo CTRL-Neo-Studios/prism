@@ -19,6 +19,11 @@ const navLinks = ref<NavigationMenuItem[]>([
 		to: '/articles'
 	},
 	{
+		label: 'Projects',
+		icon: 'i-lucide-layouts',
+		to: '/projects'
+	},
+	{
 		label: 'Photography',
 		icon: 'i-lucide-album',
 		to: '/gallery'

@@ -4,7 +4,7 @@ import {useGallery} from "~/composables/core/useGallery";
 const $route = useRoute()
 const $ga = useGallery()
 
-const { data: picture } = useAsyncData($route.path, () => $ga.getGalleryImage($route.path))
+const { data: picture } = useAsyncData('page-' + $route.path, () => $ga.getGalleryImage($route.path))
 </script>
 
 <template>

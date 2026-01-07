@@ -1,11 +1,11 @@
-import {defineContentConfig, defineCollection} from "@nuxt/content";
-import * as z from "zod";
+import {defineContentConfig, defineCollection, z} from "@nuxt/content";
 
 export const articleSchema = z.object({
 	title: z.string(),
 	tags: z.array(z.string()),
-	image: z.string().optional(),
-	date: z.coerce.date()
+	image: z.string().editor({input: 'media'}).optional(),
+	date: z.coerce.date(),
+	author: z.string()
 })
 
 export const gallerySchema = z.object({
@@ -13,7 +13,7 @@ export const gallerySchema = z.object({
 	description: z.string(),
 	category: z.string(),
 	tags: z.array(z.string()),
-	image: z.string().optional(), // Image path relative to the /public directory
+	image: z.string().editor({input: 'media'}).optional(), // Image path relative to the /public directory
 	date: z.coerce.date(),
 	parameters: z.object({
 		camera: z.string(),
@@ -22,6 +22,23 @@ export const gallerySchema = z.object({
 		shutterSpeed: z.string()
 	}),
 	location: z.string()
+})
+
+export const projectSchema = z.object({
+	title: z.string(),
+	tags: z.array(z.string()),
+	image: z.string().editor({input: 'media'}).optional(),
+	date: z.coerce.date(),
+	description: z.string(),
+	progress: z.enum(['alpha', 'beta', 'release', 'concept']),
+	repository: z.object({
+		repoUsername: z.string(),
+		repoName: z.string(),
+		privateRepo: z.boolean().default(false),
+		showIssues: z.boolean().default(true),
+		showWiki: z.boolean().default(true),
+		customWikiLink: z.string().url().optional()
+	})
 })
 
 export default defineContentConfig({
@@ -34,9 +51,18 @@ export default defineContentConfig({
 		}),
 		gallery: defineCollection({
 			type: 'page',
-			source: 'gallery/*.yml',
+			source: 'gallery/**',
 			// Define custom schema for docs collection
 			schema: gallerySchema
+		}),
+		projects: defineCollection({
+			type: 'page',
+			source: {
+				include: 'projects/*.md',
+				exclude: ['index.md']
+			},
+			// Define custom schema for docs collection
+			schema: projectSchema,
 		})
 	}
 })

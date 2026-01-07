@@ -1,22 +1,17 @@
 export function useArticles() {
 	async function getAllArticles() {
-		return await $fetch('/api/v1/articles', {
-			method: 'get'
-		})
+		return await queryCollection('articles')
+			.order('date', 'DESC')
+			.all()
 	}
 
 	async function getArticle(path: string) {
-		return await $fetch(`/api/v1/articles/${path}`, {
-			method: 'get'
-		})
+		return await queryCollection('articles').path(path).first()
 	}
 
 	async function getArticleSurround(path: string) {
-		return await $fetch(`/api/v1/articles/surround`, {
-			method: 'get',
-			body: {
-				path: path
-			}
+		return queryCollectionItemSurroundings('articles', path, {
+			fields: ['description']
 		})
 	}
 

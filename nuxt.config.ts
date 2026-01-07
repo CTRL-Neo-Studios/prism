@@ -7,11 +7,22 @@ export default defineNuxtConfig({
 		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxt/ui',
-		'@nuxtjs/mdc'
+		'@nuxtjs/mdc',
+		'nuxt-studio',
 	],
 	content: {
 		preview: {
 			api: 'https://api.nuxt.studio'
 		}
+	},
+	studio: {
+		repository: {
+			provider: 'github',
+			owner: 'CTRL-Neo-Studios',
+			repo: 'prism',
+			branch: 'dev',
+			private: true
+		},
+		route: '/admin'
 	}
 })

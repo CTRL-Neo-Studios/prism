@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import {useArticles} from "~/composables/core/useArticles";
+import {useProjects} from "~/composables/core/useProjects";
 
 const $route = useRoute()
-const $art = useArticles()
+const $proj = useProjects()
 
-const {data: articles} = await useAsyncData('all_articles', () => $art.getAllArticles())
+const {data: projects} = await useAsyncData('all_projects', () => $proj.getAllProjects())
 </script>
 
 <template>
 	<UPage>
 		<UPageSection
-			title="Articles"
-			description="The entire collection of our articles."
+			title="Projects"
+			description="The entire collection of our projects."
 		/>
 		<UPageSection
 			:ui="{
@@ -20,11 +21,11 @@ const {data: articles} = await useAsyncData('all_articles', () => $art.getAllArt
 		>
 			<UBlogPosts>
 				<UBlogPost
-					v-for="(article, index) in articles"
+					v-for="(project, index) in projects"
 					:key="index"
-					v-bind="article"
-					:image="article?.image ?? 'https://picsum.photos/800/600'"
-					:to="article.path"
+					v-bind="project"
+					:image="project?.image ?? 'https://picsum.photos/800/600'"
+					:to="project.path"
 					:class="`hover:shadow-lg hover:scale-[1.01] hover:-translate-y-0.5 shadow-neutral transition-all cursor-pointer duration-300 ${index % 2 === 0 ? 'hover:-rotate-1' : 'hover:rotate-1'}`"
 				/>
 			</UBlogPosts>

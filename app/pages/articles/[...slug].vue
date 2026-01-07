@@ -4,7 +4,7 @@ import {useArticles} from "~/composables/core/useArticles";
 const $route = useRoute()
 const $art = useArticles()
 
-const {data: page} = await useAsyncData($route.path, () => $art.getArticle($route.path))
+const {data: page} = await useAsyncData('page-' + $route.path, () => $art.getArticle($route.path))
 const {data: surround} = await useAsyncData(() => $art.getArticleSurround($route.path))
 
 const title = unref(page)?.seo?.title || unref(page)?.title
@@ -42,8 +42,6 @@ const formatDate = (dateString: string) => {
 				<div class="flex flex-col gap-3 mt-8">
 					<div class="flex text-xs text-muted items-center justify-center gap-2">
 						<span v-if="page.date">{{ formatDate(page.date) }}</span>
-						<span v-if="page.date && page.minRead">-</span>
-						<span v-if="page.minRead">{{ page.minRead }} MIN READ</span>
 					</div>
 					<NuxtImg
 						:src="page.image ?? 'https://picsum.photos/1600/900'"
@@ -70,7 +68,6 @@ const formatDate = (dateString: string) => {
 					<ContentRenderer
 						v-if="page.body"
 						:value="page"
-						class="prose dark:prose-invert max-w-none"
 					/>
 					<UContentSurround :surround />
 				</UPageBody>
