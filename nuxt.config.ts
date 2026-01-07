@@ -24,5 +24,12 @@ export default defineNuxtConfig({
 			private: true
 		},
 		route: '/admin'
-	}
+	},
+	hooks: {
+		'components:extend': (components) => {
+			const globals = components.filter(c => ['UButton', 'UIcon', 'UPageHero', 'UPageSection'].includes(c.pascalName))
+
+			globals.forEach(c => c.global = true)
+		}
+	},
 })
