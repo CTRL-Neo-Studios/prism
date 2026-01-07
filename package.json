@@ -26,6 +26,10 @@
     "@tailwindcss/typography": "^0.5.19"
   },
   "trustedDependencies": [
-    "@parcel/watcher"
+    "@parcel/watcher",
+    "better-sqlite3",
+    "esbuild",
+    "sharp",
+    "vue-demi"
   ]
 }
