@@ -1,7 +1,7 @@
 ---
 title: Vertex
 description: A fast Obsidian-Flavored Markdown Editor for workspaces and single-files.
-date: 2025-07-25
+date: 2025-07-25T00:00:00.000Z
 image: /projects/vertex/vertexmarkdowneditor-example.png
 progress: alpha
 repository:
@@ -33,7 +33,7 @@ This software is currently in Alpha. Please, **DO NOT IN ANY CASE**, use it in y
 
 ### First Attempt
 
-This project originally started with me (@Type-32) trying to make a Rich-Text Markdown Editor that is \[Obsidian-Flavored Markdown]\(<<<https://help.obsidian.md/obsidian-flavored-markdown&#x29&#x3E&#x3E&#x3E;;;;; compatible. The attempt started originally with **[Slate](https://github.com/CTRL-Neo-Studios/Slate)**, a local-first markdown editor made using the [Tiptap Editor](tiptap.dev). Slowly in time, the complexity of \*\*\*\* Slate grew and went into a completely different direction compared to the original intent of development, and naturally, it was slowly deprecated and I eventually ceased its development as other ongoing projects also required my attention.
+This project originally started with me (@Type-32) trying to make a Rich-Text Markdown Editor that is compatible with [Obsidian-Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown&#x29;. The attempt started originally with **[Slate](https://github.com/CTRL-Neo-Studios/Slate)**, a local-first markdown editor made using the [Tiptap Editor](tiptap.dev). Slowly in time, the complexity of Slate grew and went into a completely different direction compared to the original intent of development, and naturally, it was slowly deprecated and I eventually ceased its development as other ongoing projects also required my attention.
 
 However, that project was not abandoned for nothing: I learned well what it takes to make an actual software, and more importantly, my first ever try at using Tauri v2 + Nuxt v4 for production. This experience laid the pathway for other smaller desktop-software projects.
 
