@@ -33,9 +33,9 @@ const navLinks = ref<NavigationMenuItem[]>([
 
 <template>
 	<div>
-		<div class="fixed top-0 right-0 left-0 border-b border-default h-16 z-10">
-			<div class="border-x border-default px-20 h-full flex items-center justify-center">
-				<AppHeader :links="navLinks" class=" flex-grow h-full" />
+		<div class="fixed top-0 right-0 left-0 border-b border-default h-16 z-20">
+			<div class="border-x border-default px-20 h-full flex items-center justify-center z-20">
+				<AppHeader :links="navLinks" class="flex-grow h-full z-20" />
 			</div>
 		</div>
 		<UContainer class="w-full px-20 lg:px-20">

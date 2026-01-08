@@ -13,7 +13,7 @@ defineProps<{
 			:items="links"
 			variant="link"
 			color="neutral"
-			class="backdrop-blur-sm px-2 sm:px-4 border-none flex items-center justify-center"
+			class="backdrop-blur-sm px-2 sm:px-4 border-none flex items-center justify-center z-20"
 			:ui="{
 				link: 'px-2 py-1',
 				linkLeadingIcon: 'hidden',
