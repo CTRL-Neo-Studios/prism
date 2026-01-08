@@ -7,10 +7,6 @@ author: Type-32
 
 # About Us
 
-Who am I?
-
-I am the one who knocks... no just kidding :)
-
 I'm **Type-32**, the founder of **CTRL Neo Studios**. We were originally CRTL Prototype Studios (yes, that's not a typo), to which we rebranded at the end of 2024. The studio started in late 2022, as a small club project that has now evolved into a somewhat small and manageable studio.
 
 Our studio right now consists of 3 core members: me (@Type-32), Alpinecore (@ALpinecore), DeadAxe121 (@ansonzhang2009); me being the founder and backbone of all of the tech stacks we've used in studio projects, ALpinecore being the upcoming full-stack developer & DevOps engineer, and DeadAxe121 being an outstanding Chemistry scholar and upcoming Machine-Learning + Web Developer.
