@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 			provider: 'github',
 			owner: 'CTRL-Neo-Studios',
 			repo: 'prism',
-			branch: 'dev',
+			branch: 'main',
 			private: true
 		},
 		route: '/admin'
