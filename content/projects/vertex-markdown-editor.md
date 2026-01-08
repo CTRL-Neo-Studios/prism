@@ -1,26 +1,26 @@
 ---
 title: Vertex
+date: 2025-07-09T00:00:00.000Z
 description: An Obsidian-Flavored Markdown Editor for your folder-full projects or single-markdown-files.
-seo:
-  title: Vertex-markdown-editor file
-  description: A
-tags:
-  - markdown
-  - markdown editor
-  - vertex
-  - ofm
-  - obsidian
-  - obsidian alternative
-navigation:
-  icon: i-tabler-markdown
-date: 2025-07-09
-progress: alpha
 image: /projects/vertex/vertexmarkdowneditor-example.png
+navigation:
+	icon: i-tabler-markdown
+progress: alpha
 repository:
-  showIssues: true
-  showWiki: true
-  repoUsername: CTRL-Neo-Studios
-  repoName: vertex
+	showIssues: true
+	showWiki: true
+	repoUsername: CTRL-Neo-Studios
+	repoName: vertex
+seo:
+	title: Vertex-markdown-editor file
+	description: A
+tags:
+	- markdown
+	- markdown editor
+	- vertex
+	- ofm
+	- obsidian
+	- obsidian alternative
 ---
 
 ![vertexmarkdowneditor-example](/projects/vertex/vertexmarkdowneditor-example.png)
@@ -31,13 +31,13 @@ This software is currently in Alpha. Please, **DO NOT IN ANY CASE**, use it in y
 **However**, you can build the software yourself and/or run it locally to test it on your smaller projects.
 ::
 
-**Vertex** is an [Obsidian-Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown) Editor that uses our own implementation of Rich-Text Markdown Editor based off of CodeMirror 6 and heavily inspired by [Obsidian](obsidian.md). Other tech stacks used are [Nuxt v4](nuxt.com) + [Nuxt UI v4](ui.nuxt.com) + [Tauri v2](tauri.app).
+**Vertex** is an [Obsidian-Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown) Editor that uses our own implementation of Rich-Text Markdown Editor based off of CodeMirror 6 and heavily inspired by [Obsidian](obsidian). Other tech stacks used are [Nuxt v4](nuxt.com) + [Nuxt UI v4](ui.nuxt.com) + [Tauri v2](tauri.app).
 
 ## Why, and for what?
 
 ### First Attempt
 
-This project originally started with me (@Type-32) trying to make a Rich-Text Markdown Editor that is [Obsidian-Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown); compatible. The attempt started originally with **[Slate](https://github.com/CTRL-Neo-Studios/Slate)**, a local-first markdown editor made using the [Tiptap Editor](tiptap.dev). Slowly in time, the complexity of **** Slate grew and went into a completely different direction compared to the original intent of development, and naturally, it was slowly deprecated and I eventually ceased its development as other ongoing projects also required my attention.
+This project originally started with me (@Type-32) trying to make a Rich-Text Markdown Editor that is [Obsidian-Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown&#x29;; compatible. The attempt started originally with **[Slate](https://github.com/CTRL-Neo-Studios/Slate)**, a local-first markdown editor made using the [Tiptap Editor](tiptap.dev). Slowly in time, the complexity of \*\*\*\* Slate grew and went into a completely different direction compared to the original intent of development, and naturally, it was slowly deprecated and I eventually ceased its development as other ongoing projects also required my attention.
 
 However, that project was not abandoned for nothing: I learned well what it takes to make an actual software, and more importantly, my first ever try at using Tauri v2 + Nuxt v4 for production. This experience laid the pathway for other smaller desktop-software projects.
 
