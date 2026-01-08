@@ -5,10 +5,11 @@ date: 2025-07-09T00:00:00.000Z
 image: /projects/vertex/vertexmarkdowneditor-example.png
 icon: i-tabler-markdown
 progress: alpha
-showIssues: true
-showWiki: true
-repoUsername: CTRL-Neo-Studios
-repoName: vertex
+repository:
+	showIssues: true
+	showWiki: true
+	repoUsername: CTRL-Neo-Studios
+	repoName: vertex
 tags:
   - markdown
   - markdown editor
