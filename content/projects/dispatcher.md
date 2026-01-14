@@ -1,19 +1,19 @@
 ---
 title: Dispatcher
+date: 2026-01-14T00:00:00.000Z
 description: A simple event dispatcher for Nuxt.
-seo:
-  title: Dispatcher file
-  description: A type-safe, channel-based event dispatcher system for Nuxt with automatic cleanup and flexible event handling.
-tags: []
-date: 2026-01-14
+navigation:
+  icon: i-lucide-git-branch
 progress: release
 repository:
   repoUsername: CTRL-Neo-Studios
   repoName: dispatcher
   showIssues: true
   showWiki: false
-navigation:
-  icon: i-lucide-git-branch
+seo:
+  title: Dispatcher
+  description: A type-safe, channel-based event dispatcher system for Nuxt with automatic cleanup and flexible event handling.
+tags: []
 ---
 
 A type-safe, channel-based event dispatcher system for Nuxt with automatic cleanup and flexible event handling.
@@ -276,7 +276,7 @@ uiEvents.emit('modal.open', { modalId: 'settings' })
 
 For debug logs, analytics, or temporary events without type constraints:
 
-***Note****: Wild events called using* `yeet()` *can only be caught by using the* `catch()` *function. The wild event bus is separate from the normal event bus.*
+***Note***\*: Wild events called using\* `yeet()` *can only be caught by using the* `catch()` *function. The wild event bus is separate from the normal event bus.*
 
 ```ts
 events.yeet('temp.debug', { whatever: 'data' })
