@@ -29,8 +29,8 @@ useSeoMeta({
 <template>
 	<UMain class="pt-20 px-2">
 		<Suspense>
-			<UContainer>
-				<UPage v-if="!pending && page">
+			<UContainer v-if="!pending && page">
+				<UPage>
 					<UPageHeader
 						:title="page.title"
 						:description="page.description"
