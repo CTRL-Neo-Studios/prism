@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import {useArticles} from "~/composables/core/useArticles";
 
+useHead({
+	title: 'Articles'
+})
+
 const $route = useRoute()
 const $art = useArticles()
 

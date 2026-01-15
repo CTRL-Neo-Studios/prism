@@ -2,6 +2,10 @@
 import {LazyMotion, Motion} from "motion-v";
 import {useGallery} from "~/composables/core/useGallery";
 
+useHead({
+	title: 'Gallery'
+})
+
 const $ga = useGallery()
 const { data: galleryImages, refresh, pending } = useAsyncData('gallery', () => $ga.getAllImages())
 

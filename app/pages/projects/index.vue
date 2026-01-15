@@ -2,6 +2,10 @@
 import {useArticles} from "~/composables/core/useArticles";
 import {useProjects} from "~/composables/core/useProjects";
 
+useHead({
+	title: 'Projects'
+})
+
 const $route = useRoute()
 const $proj = useProjects()
 
