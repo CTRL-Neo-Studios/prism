@@ -9,7 +9,7 @@ const { data: picture } = useAsyncData('page-' + $route.path, () => $ga.getGalle
 
 <template>
 	<UMain>
-		<UContainer>
+		<UContainer v-if="picture">
 			<div class="w-full">
 				<NuxtImg :src="picture.image" class="object-contain w-full h-full select-none"/>
 			</div>
