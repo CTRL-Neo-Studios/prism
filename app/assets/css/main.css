@@ -2,9 +2,9 @@
 @import "@nuxt/ui";
 @plugin "@tailwindcss/typography";
 
-@theme static {
-	--font-sans: 'Inter', system-ui, sans-serif;
-	--font-mono: 'JetBrains Mono', monospace;
+@theme {
+	--font-sans: 'Geist', 'Inter', system-ui, sans-serif;
+	--font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 
 	--color-alizarin-crimson: oklch(56.66% 0.21206 27.393);
 	--color-alizarin-crimson-50: oklch(96.153% 0.01298 17.382);
