@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "create-docs": {
+      "source": "nuxt-content/docus",
+      "sourceType": "github",
+      "computedHash": "3c6d7d6f6084ff5ebbd59fe8b348f99bced0d303da45cd61069a0f6dac8199f6"
+    },
     "motion": {
       "source": "onmax/nuxt-skills",
       "sourceType": "github",
@@ -25,6 +30,11 @@
       "source": "onmax/nuxt-skills",
       "sourceType": "github",
       "computedHash": "c793a5cefc7a23a1e2e9fb637372ab5c4f9d1c26f04a7abba91ffa51c9726485"
+    },
+    "review-docs": {
+      "source": "nuxt-content/docus",
+      "sourceType": "github",
+      "computedHash": "016eca30a60e4d1ec38cf162753d47e52dbb543a931f77f8050d4bc4f6bc5e6b"
     },
     "vue": {
       "source": "onmax/nuxt-skills",
