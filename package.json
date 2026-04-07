@@ -10,24 +10,24 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.97",
+    "@iconify-json/lucide": "^1.2.101",
     "@nuxt/content": "3.12.0",
     "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "4.5.1",
-    "@nuxtjs/mdc": "0.20.2",
-    "@tailwindcss/vite": "^4.2.1",
-    "@tiptap/extension-collaboration": "^3.20.1",
-    "@tiptap/extension-node-range": "^3.20.1",
+    "@nuxt/ui": "4.6.1",
+    "@nuxtjs/mdc": "0.21.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "@tiptap/extension-collaboration": "^3.22.2",
+    "@tiptap/extension-node-range": "^3.22.2",
     "@tiptap/y-tiptap": "^3.0.2",
     "@vueuse/nuxt": "14.2.1",
-    "better-sqlite3": "^12.6.2",
-    "nuxt": "^4.3.1",
-    "nuxt-studio": "1.4.0",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3",
-    "vue": "^3.5.30",
-    "vue-router": "^5.0.3",
-    "yjs": "^13.6.29"
+    "better-sqlite3": "^12.8.0",
+    "nuxt": "^4.4.2",
+    "nuxt-studio": "1.5.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2",
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.4",
+    "yjs": "^13.6.30"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19"
