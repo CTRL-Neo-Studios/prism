@@ -1,83 +1,49 @@
 <script setup lang="ts">
-import {useArticles} from "~/composables/core/useArticles";
+const route = useRoute()
 
-const $route = useRoute()
-const $art = useArticles()
+const {data: page} = await useAsyncData(`article-${route.path}`, () =>
+	queryCollection('articles').path(route.path).first()
+)
+if (!page.value) throw createError({statusCode: 404, statusMessage: 'Article not found', fatal: true})
 
-const {data: page, pending} = await useAsyncData('page-' + $route.path, () => $art.getArticle($route.path))
-const {data: surround} = await useAsyncData(() => $art.getArticleSurround($route.path))
+const {data: surround} = await useAsyncData(`article-surround-${route.path}`, () =>
+	queryCollectionItemSurroundings('articles', route.path, {fields: ['description']})
+)
 
-const title = unref(page)?.seo?.title || unref(page)?.title
-const description = unref(page)?.seo?.description || unref(page)?.description
-
-onMounted(async () => {
-	await until(pending).toBe(false)
-})
-
-useSeoMeta({
-	title,
-	description,
-	ogDescription: description,
-	ogTitle: title
-})
-
-const articleLink = computed(() => `${window?.location}`)
-
-const formatDate = (dateString: string) => {
-	return new Date(dateString).toLocaleDateString('en-US', {
-		year: 'numeric',
-		month: 'short',
-		day: 'numeric'
-	})
-}
+const title = page.value.seo?.title || page.value.title
+const description = page.value.seo?.description || page.value.description
+useSeoMeta({title, ogTitle: title, description, ogDescription: description, ogImage: page.value.image})
 </script>
 
 <template>
-	<UMain class="pt-20 px-2">
-		<Suspense>
-			<UContainer>
-				<UPage v-if="!pending && page">
-					<ULink
-						to="/articles"
-						class="text-sm flex items-center gap-1"
-					>
-						<UIcon name="i-lucide-chevron-left" />
-						Articles
-					</ULink>
-					<div class="flex flex-col gap-3 mt-8">
-						<div class="flex text-xs text-muted items-center justify-center gap-2">
-							<span v-if="page.date">{{ formatDate(page.date) }}</span>
-						</div>
-						<NuxtImg
-							:src="page.image ?? 'https://picsum.photos/1600/900'"
-							:alt="page.title"
-							class="rounded-lg w-full h-75 object-cover object-center"
-						/>
-						<h1 class="text-4xl text-center font-medium max-w-3xl mx-auto mt-4">
-							{{ page.title }}
-						</h1>
-						<p class="text-muted text-center max-w-2xl mx-auto">
-							{{ page.description }}
-						</p>
-					</div>
-					<UPageBody class="max-w-3xl mx-auto">
-						<ContentRenderer
-							v-if="page.body"
-							:value="page"
-						/>
-						<UContentSurround :surround />
-					</UPageBody>
-				</UPage>
-			</UContainer>
-			<template #fallback>
-				<UContainer class="w-full h-full flex items-center justify-center">
-					<UProgress class="min-x-3xl"/>
-				</UContainer>
-			</template>
-		</Suspense>
-	</UMain>
+	<div v-if="page">
+		<PageBanner
+			:headline="`// ${formatDate(page.date)}`"
+			:title="page.title"
+			:description="page.description"
+			:art="fallbackArt(page.path)"
+		>
+			<UUser
+				:name="page.author"
+				:description="`@${page.author}`"
+				:avatar="{ src: `https://github.com/${page.author}.png`, alt: page.author }"
+				:to="`https://github.com/${page.author}`"
+				target="_blank"
+				:ui="{ name: 'text-white', description: 'text-white/60' }"
+			/>
+		</PageBanner>
+
+		<UContainer>
+			<UPage>
+				<UPageBody>
+					<ContentRenderer :value="page"/>
+					<USeparator v-if="surround?.filter(Boolean).length"/>
+					<UContentSurround :surround="surround ?? []"/>
+				</UPageBody>
+				<template v-if="page.body?.toc?.links?.length" #right>
+					<UContentToc :links="page.body.toc.links" highlight/>
+				</template>
+			</UPage>
+		</UContainer>
+	</div>
 </template>
-
-<style scoped>
-
-</style>

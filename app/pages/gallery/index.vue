@@ -1,48 +1,58 @@
 <script setup lang="ts">
-import {LazyMotion, Motion} from "motion-v";
-import {useGallery} from "~/composables/core/useGallery";
+import {Motion} from 'motion-v'
 
-useHead({
-	title: 'Gallery'
-})
+useSeoMeta({title: 'Gallery', description: 'Photography and brand artwork from CTRL Neo Studios.'})
 
-const $ga = useGallery()
-const { data: galleryImages, refresh, pending } = useAsyncData('gallery', () => $ga.getAllImages())
-
+const {data: photos} = await useAsyncData('gallery', () =>
+	queryCollection('gallery').select('path', 'title', 'image').order('date', 'DESC').all()
+)
 </script>
 
 <template>
-    <UPage>
-        <UPageSection
-            title="Photography Gallery"
-            description="A rare hobby of mine."
-        />
-        <UPageSection :ui="{ container: '!pt-0' }">
-            <MasonryGrid :gap-size="8">
-                <Motion
-                    v-for="(picture, index) in galleryImages"
-                    :key="index"
-                    :initial="{ opacity: 0, transform: 'translateY(10px)' }"
-                    :while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
-                    :transition="{ delay: 0.2 }"
-                    :in-view-options="{ once: true }"
-                >
-                    <div class="w-full h-auto rounded-lg overflow-hidden transition-all duration-200 hover:scale-[1.02] hover:cursor-pointer hover:drop-shadow-lg active:brightness-[0.8] transform-gpu">
-                        <NuxtImg
-                            :src="picture.image"
-                            alt="gallery image"
-                            class="object-cover w-full h-full"
-                            format="jpeg"
-                            quality="80"
-							@click="() => $ga.toGalleryImage(picture.path)"
-                        />
-                    </div>
-                </Motion>
-            </MasonryGrid>
-        </UPageSection>
-    </UPage>
+	<div>
+		<PageBanner
+			headline="// gallery"
+			title="Art & photography"
+			description="The V2 brand artwork, plus photos we've taken along the way."
+			:art="artworks[3]!.src"
+		/>
+		<UContainer class="py-12 space-y-16">
+			<section>
+				<h2 class="font-display text-2xl font-medium mb-6">CTRL Neo V2 artwork</h2>
+				<MasonryGrid :gap-size="4">
+					<a
+						v-for="art in artworks"
+						:key="art.src"
+						:href="art.src"
+						target="_blank"
+						class="group relative block overflow-hidden border border-default"
+					>
+						<img :src="art.src" :alt="art.title" loading="lazy" class="w-full transition-transform duration-500 group-hover:scale-105">
+						<span class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-black/60 px-3 py-2 font-mono text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+							{{ art.title }}
+							<UIcon name="i-lucide-download" class="size-4"/>
+						</span>
+					</a>
+				</MasonryGrid>
+			</section>
+
+			<section>
+				<h2 class="font-display text-2xl font-medium mb-6">Photography</h2>
+				<MasonryGrid v-if="photos?.length" :gap-size="4">
+					<Motion
+						v-for="photo in photos"
+						:key="photo.path"
+						:initial="{ opacity: 0, y: 10 }"
+						:while-in-view="{ opacity: 1, y: 0 }"
+						:in-view-options="{ once: true }"
+					>
+						<NuxtLink :to="photo.path" class="group block overflow-hidden border border-default">
+							<NuxtImg :src="photo.image" :alt="photo.title" format="webp" quality="80" class="w-full transition-transform duration-500 group-hover:scale-105"/>
+						</NuxtLink>
+					</Motion>
+				</MasonryGrid>
+				<UEmpty v-else icon="i-lucide-camera" title="No photos yet" description="The camera's charging."/>
+			</section>
+		</UContainer>
+	</div>
 </template>
-
-<style scoped>
-
-</style>

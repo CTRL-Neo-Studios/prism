@@ -5,12 +5,29 @@
 @theme {
 	--font-sans: 'Inter', sans-serif;
 	--font-mono: 'Space Grotesk', 'JetBrains Mono', monospace;
+	--font-display: 'Space Grotesk', 'Inter', sans-serif;
 	--font-weight-semibold: 700;
 	--font-weight-bold: 800;
 }
 
+/* Sampled from the V2 cube: bright face #ff2a2a → shadow #4a0505 */
+@theme static {
+	--color-crimson-50: #fff1f1;
+	--color-crimson-100: #ffe0e0;
+	--color-crimson-200: #ffc6c6;
+	--color-crimson-300: #ff9e9e;
+	--color-crimson-400: #ff6666;
+	--color-crimson-500: #fd3535;
+	--color-crimson-600: #eb1717;
+	--color-crimson-700: #c60f0f;
+	--color-crimson-800: #a31111;
+	--color-crimson-900: #871515;
+	--color-crimson-950: #4a0505;
+}
+
 :root {
 	--ui-radius: 0rem;
+	--ui-header-height: 4rem;
 }
 
 :root, .light {
@@ -21,7 +38,7 @@
 }
 
 .dark {
-	--ui-bg: var(--ui-color-neutral-950);
+	--ui-bg: #050505;
 	--ui-bg-muted: var(--ui-color-neutral-900);
 	--ui-text-highlighted: var(--ui-color-neutral-50);
 	--ui-bg-inverted: var(--ui-color-neutral-50);
@@ -30,4 +47,23 @@
 	--ui-bg-elevated: var(--ui-color-neutral-900);
 	--ui-bg-accented: var(--ui-color-neutral-800);
 	--ui-text-inverted: var(--ui-color-neutral-900);
+}
+
+/* Faint grid texture; on a pseudo-element so the mask doesn't fade content */
+.bg-grid {
+	position: relative;
+	isolation: isolate;
+}
+
+.bg-grid::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-image:
+		linear-gradient(to right, var(--ui-border) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--ui-border) 1px, transparent 1px);
+	background-size: 32px 32px;
+	mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 30%, transparent 100%);
 }

@@ -1,105 +1,64 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: page, pending } = await useAsyncData('page-' + route.path, () => {
-	return queryCollection('projects').path(route.path).first()
-})
+const {data: page} = await useAsyncData(`project-${route.path}`, () =>
+	queryCollection('projects').path(route.path).first()
+)
+if (!page.value) throw createError({statusCode: 404, statusMessage: 'Project not found', fatal: true})
 
-const { data: surround } = await useAsyncData('page-surround-' + route.path, () => {
-	return queryCollectionItemSurroundings('projects', route.path, {
-		fields: ['description']
-	})
-})
+const {data: surround} = await useAsyncData(`project-surround-${route.path}`, () =>
+	queryCollectionItemSurroundings('projects', route.path, {fields: ['description']})
+)
 
-onMounted(async () => {
-	await until(pending).toBe(false)
-})
+const title = page.value.seo?.title || page.value.title
+const description = page.value.seo?.description || page.value.description
+useSeoMeta({title, ogTitle: title, description, ogDescription: description, ogImage: page.value.image})
 
-const title = unref(page)?.seo?.title || unref(page)?.title
-const description = unref(page)?.seo?.description || unref(page)?.description
-
-useSeoMeta({
-	title,
-	ogTitle: title,
-	description,
-	ogDescription: description
-})
+const repo = page.value.repository
+const repoUrl = `https://github.com/${repo.repoUsername}/${repo.repoName}`
+const status = projectStatus[page.value.progress]
+const links = [
+	{label: 'Repository', to: repoUrl, target: '_blank', icon: 'i-simple-icons-github'},
+	...(repo.showIssues ? [{label: 'Issues', to: `${repoUrl}/issues`, target: '_blank', icon: 'i-lucide-bug'}] : []),
+	...(repo.showWiki ? [{label: 'Wiki', to: repo.customWikiLink ?? `${repoUrl}/wiki`, target: '_blank', icon: 'i-lucide-book-open'}] : [])
+]
 </script>
 
 <template>
-	<UMain class="pt-20 px-2">
-		<Suspense>
-			<UContainer v-if="!pending && page">
-				<UPage>
-					<UPageHeader
-						:title="page.title"
-						:description="page.description"
-						:links="[
-							{
-								label: 'View on GitHub',
-								to: `https://github.com/${page?.repository.repoUsername}/${page?.repository.repoName}`,
-								external: true,
-								icon: 'i-lucide-github'
-							},
-						]"
-					/>
-					<template #right>
-						<UContentToc
-							:title="page?.body?.toc?.title"
-							:links="page?.body?.toc?.links"
-							class="z-0"
-						>
-							<template #bottom>
-								<div
-									class="hidden lg:block space-y-6"
-									:class="{ '!mt-6': page.body?.toc?.links?.length }"
-								>
-									<USeparator
-										v-if="page.body?.toc?.links?.length"
-										type="dashed"
-									/>
+	<div v-if="page">
+		<PageBanner
+			:headline="`// ${repo.repoUsername}/${repo.repoName}`"
+			:title="page.title"
+			:description="page.description"
+			:art="fallbackArt(page.path)"
+		>
+			<div class="flex flex-wrap items-center gap-3">
+				<UBadge :label="status?.label" :color="status?.color" variant="solid"/>
+				<span class="font-mono text-sm text-white/60">{{ formatDate(page.date) }}</span>
+				<UButton label="View on GitHub" :to="repoUrl" target="_blank" icon="i-simple-icons-github" size="sm" class="ms-2"/>
+			</div>
+		</PageBanner>
 
-									<UPageLinks
-										title="Other Links"
-										:links="[
-										...(page.repository.showIssues ? [{
-											label: 'Issues',
-											to: `https://github.com/${page?.repository.repoUsername}/${page?.repository.repoName}/issues`,
-											external: true,
-											icon: 'i-lucide-bug'
-										}] : []),
-										...(page.repository.showWiki ? [{
-											label: 'Wiki',
-											to: `https://github.com/${page?.repository.repoUsername}/${page?.repository.repoName}/wiki`,
-											external: true,
-											icon: 'i-lucide-book'
-										}] : [])
-									]"
-									/>
-								</div>
-							</template>
-						</UContentToc>
-					</template>
-					<UPageBody>
-						<ContentRenderer
-							v-if="page"
-							:value="page"
-						/>
+		<UContainer>
+			<UPage>
+				<UPageBody>
+					<ContentRenderer :value="page"/>
+					<USeparator v-if="surround?.filter(Boolean).length"/>
+					<UContentSurround :surround="surround ?? []"/>
+				</UPageBody>
 
-						<USeparator v-if="surround?.length"/>
-
-						<UContentSurround :surround="surround"/>
-					</UPageBody>
-				</UPage>
-			</UContainer>
-			<UContainer v-else class="w-full h-full flex items-center justify-center">
-				<UProgress class="min-x-3xl"/>
-			</UContainer>
-			<template #fallback>
-				<UContainer class="w-full h-full flex items-center justify-center">
-					<UProgress class="min-x-3xl"/>
-				</UContainer>
-			</template>
-		</Suspense>
-	</UMain>
+				<template #right>
+					<UContentToc :links="page.body?.toc?.links" highlight>
+						<template #bottom>
+							<USeparator v-if="page.body?.toc?.links?.length" type="dashed" class="my-6"/>
+							<UPageLinks title="Links" :links="links"/>
+							<div v-if="page.tags?.length" class="mt-6 flex flex-wrap gap-1.5">
+								<UBadge v-for="tag in page.tags" :key="tag" :label="tag" variant="outline" color="neutral" size="sm"/>
+							</div>
+						</template>
+					</UContentToc>
+				</template>
+			</UPage>
+		</UContainer>
+	</div>
 </template>

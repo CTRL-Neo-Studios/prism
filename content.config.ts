@@ -2,7 +2,7 @@ import {defineContentConfig, defineCollection, z} from "@nuxt/content";
 
 export const articleSchema = z.object({
 	title: z.string(),
-	tags: z.array(z.string()),
+	tags: z.array(z.string()).default([]),
 	image: z.string().editor({input: 'media'}).optional(),
 	date: z.coerce.date(),
 	author: z.string()

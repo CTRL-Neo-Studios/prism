@@ -1,41 +1,37 @@
 <script setup lang="ts">
-import {useArticles} from "~/composables/core/useArticles";
+useSeoMeta({title: 'Articles', description: 'Notes, write-ups and news from CTRL Neo Studios.'})
 
-useHead({
-	title: 'Articles'
-})
-
-const $route = useRoute()
-const $art = useArticles()
-
-const {data: articles} = await useAsyncData('all_articles', () => $art.getAllArticles())
+const {data: articles} = await useAsyncData('all-articles', () =>
+	queryCollection('articles').select('path', 'title', 'description', 'date', 'image', 'author', 'tags').order('date', 'DESC').all()
+)
 </script>
 
 <template>
-	<UPage>
-		<UPageSection
-			title="Articles"
-			description="The entire collection of our articles."
+	<div>
+		<PageBanner
+			headline="// articles"
+			title="From the studio"
+			description="Write-ups, devlogs and the story behind CTRL Neo."
+			:art="artworks[2]!.src"
 		/>
-		<UPageSection
-			:ui="{
-				container: '!pt-0'
-			}"
-		>
-			<UBlogPosts>
+		<UContainer class="py-12">
+			<UBlogPosts v-if="articles?.length">
 				<UBlogPost
 					v-for="(article, index) in articles"
-					:key="index"
-					v-bind="article"
-					:image="article?.image ?? 'https://picsum.photos/800/600'"
+					:key="article.path"
+					:title="article.title"
+					:description="article.description"
+					:date="formatDate(article.date)"
+					:badge="article.tags?.[0]"
+					:image="article.image ?? fallbackArt(article.path)"
+					:authors="[{ name: article.author, avatar: { src: `https://github.com/${article.author}.png` } }]"
 					:to="article.path"
-					:class="`hover:shadow-lg hover:scale-[1.01] hover:-translate-y-0.5 shadow-neutral transition-all cursor-pointer duration-300 ${index % 2 === 0 ? 'hover:-rotate-1' : 'hover:rotate-1'}`"
+					:orientation="index === 0 ? 'horizontal' : 'vertical'"
+					:class="index === 0 ? 'col-span-full' : ''"
+					variant="outline"
 				/>
 			</UBlogPosts>
-		</UPageSection>
-	</UPage>
+			<UEmpty v-else icon="i-lucide-newspaper" title="No articles yet" description="Check back soon."/>
+		</UContainer>
+	</div>
 </template>
-
-<style scoped>
-
-</style>

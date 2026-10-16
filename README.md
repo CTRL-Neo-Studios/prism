@@ -1,75 +1,16 @@
-# Nuxt Minimal Starter
+# Prism
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
+The CTRL Neo Studios website: Nuxt 4, Nuxt UI v4, Nuxt Content v3, Nuxt Studio (`/admin`).
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
 bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
+bun run dev     # http://localhost:3000
 bun run build
 ```
 
-Locally preview production build:
+## Layout
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `content/` holds `projects/`, `articles/` and `gallery/` markdown (schemas live in `content.config.ts`).
+- `public/wallpapers/` holds the V2 brand artwork. It's listed in `app/utils/site.ts` (`artworks`) and used as hero art, page banners and fallback covers.
+- `app/utils/site.ts` also holds the project status badges, date formatting and the GitHub org link.
+- Brand palette: `crimson` in `app/assets/css/main.css`, sampled from the V2 cube.

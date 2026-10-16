@@ -1,55 +1,36 @@
 <script setup lang="ts">
-import {useArticles} from "~/composables/core/useArticles";
-import {useProjects} from "~/composables/core/useProjects";
+import type {TabsItem} from '@nuxt/ui'
 
-useHead({
-	title: 'Projects'
-})
+useSeoMeta({title: 'Projects', description: 'Every library, app and tool from CTRL Neo Studios.'})
 
-const $route = useRoute()
-const $proj = useProjects()
+const {data: projects} = await useAsyncData('all-projects', () =>
+	queryCollection('projects').select(...PROJECT_CARD_FIELDS).order('date', 'DESC').all()
+)
 
-const {data: projects} = await useAsyncData('all_projects', () => $proj.getAllProjects())
-function getBadge(progress: "alpha" | "beta" | "release" | "concept" = "concept") {
-	switch(progress) {
-		case "alpha":
-			return 'Alpha'
-		case "beta":
-			return 'Beta'
-		case "release":
-			return 'Release'
-		case "concept":
-			return 'Concept'
-	}
-}
+const filter = ref('all')
+const tabs = computed<TabsItem[]>(() => [
+	{label: `All (${projects.value?.length ?? 0})`, value: 'all'},
+	...Object.entries(projectStatus)
+		.map(([value, s]) => ({label: s.label, value, count: projects.value?.filter(p => p.progress === value).length ?? 0}))
+		.filter(t => t.count)
+		.map(t => ({label: `${t.label} (${t.count})`, value: t.value}))
+])
+const filtered = computed(() =>
+	filter.value === 'all' ? projects.value ?? [] : projects.value?.filter(p => p.progress === filter.value) ?? []
+)
 </script>
 
 <template>
-	<UPage>
-		<UPageSection
-			title="Projects"
-			description="The entire collection of our projects."
+	<div>
+		<PageBanner
+			headline="// projects"
+			title="Things we've built"
+			description="Open-source libraries, editors and apps, from early concepts to shipped releases."
+			:art="artworks[1]!.src"
 		/>
-		<UPageSection
-			:ui="{
-				container: '!pt-0'
-			}"
-		>
-			<UBlogPosts>
-				<UBlogPost
-					v-for="(project, index) in projects"
-					:key="index"
-					v-bind="project"
-					:image="project?.image ?? 'https://picsum.photos/800/600'"
-					:to="project.path"
-					:badge="getBadge(project.progress)"
-					:class="`hover:shadow-lg hover:scale-[1.01] hover:-translate-y-0.5 shadow-neutral transition-all cursor-pointer duration-300 ${index % 2 === 0 ? 'hover:-rotate-1' : 'hover:rotate-1'}`"
-				/>
-			</UBlogPosts>
-		</UPageSection>
-	</UPage>
+		<UContainer class="py-12">
+			<UTabs v-model="filter" :items="tabs" :content="false" variant="link" color="neutral" class="mb-8"/>
+			<ProjectGrid :projects="filtered"/>
+		</UContainer>
+	</div>
 </template>
-
-<style scoped>
-
-</style>
