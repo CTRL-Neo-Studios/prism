@@ -10,11 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@comark/nuxt": "0.7.0",
     "@iconify-json/lucide": "^1.2.101",
     "@nuxt/content": "3.11.2",
     "@nuxt/image": "2.0.0",
     "@nuxt/ui": "4.6.1",
-    "@nuxtjs/mdc": "0.21.1",
     "@tailwindcss/vite": "^4.2.2",
     "@tiptap/extension-collaboration": "^3.22.2",
     "@tiptap/extension-node-range": "^3.22.2",

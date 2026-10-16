@@ -3,7 +3,7 @@ export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
 	devtools: {enabled: true},
 	css: ['~/assets/css/main.css'],
-	modules: ['@nuxt/content', '@nuxt/image', '@nuxt/ui', '@nuxtjs/mdc', 'nuxt-studio', '@vueuse/nuxt'],
+	modules: ['@nuxt/content', '@nuxt/image', '@nuxt/ui', '@nuxtjs/mdc', 'nuxt-studio', '@vueuse/nuxt', '@comark/nuxt'],
 	content: {
 		preview: {
 			api: 'https://api.nuxt.studio'
