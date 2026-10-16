@@ -21,7 +21,7 @@
     "@tiptap/y-tiptap": "^3.0.2",
     "@vueuse/nuxt": "14.2.1",
     "better-sqlite3": "^12.8.0",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.6.1",
     "nuxt-studio": "1.5.1",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
