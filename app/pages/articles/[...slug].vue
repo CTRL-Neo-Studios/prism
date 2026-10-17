@@ -1,18 +1,20 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const {data: page} = await useAsyncData(`article-${route.path}`, () =>
+const {data: page, pending} = await useAsyncData(`article-${route.path}`, () =>
 	queryCollection('articles').path(route.path).first()
 )
-if (!page.value) throw createError({statusCode: 404, statusMessage: 'Article not found', fatal: true})
+
+if (!page.value && !pending.value) throw createError({statusCode: 404, statusMessage: 'Article not found', fatal: true})
 
 const {data: surround} = await useAsyncData(`article-surround-${route.path}`, () =>
 	queryCollectionItemSurroundings('articles', route.path, {fields: ['description']})
 )
 
-const title = page.value.seo?.title || page.value.title
-const description = page.value.seo?.description || page.value.description
-useSeoMeta({title, ogTitle: title, description, ogDescription: description, ogImage: page.value.image})
+const title = computed(() => page.value?.seo?.title || page.value?.title)
+const description = computed(() => page.value?.seo?.description || page.value?.description)
+
+useSeoMeta({title, ogTitle: title, description, ogDescription: description, ogImage: page.value?.image})
 </script>
 
 <template>

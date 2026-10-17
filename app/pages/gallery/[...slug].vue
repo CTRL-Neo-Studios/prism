@@ -1,21 +1,21 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const {data: photo} = await useAsyncData(`photo-${route.path}`, () =>
+const {data: photo, pending} = await useAsyncData(`photo-${route.path}`, () =>
 	queryCollection('gallery').path(route.path).first()
 )
-if (!photo.value) throw createError({statusCode: 404, statusMessage: 'Photo not found', fatal: true})
+if (!photo.value && !pending.value) throw createError({statusCode: 404, statusMessage: 'Photo not found', fatal: true})
 
-useSeoMeta({title: photo.value.title, description: photo.value.description, ogImage: photo.value.image})
+useSeoMeta({title: photo.value?.title, description: photo.value?.description, ogImage: photo.value?.image})
 
-const p = photo.value.parameters
+const p = photo.value?.parameters
 const specs = [
-	{icon: 'i-lucide-camera', label: p.camera},
-	{icon: 'i-lucide-focus', label: p.lens},
-	{icon: 'i-lucide-aperture', label: `f/${p.aperture}`},
-	{icon: 'i-lucide-timer', label: p.shutterSpeed},
-	{icon: 'i-lucide-map-pin', label: photo.value.location},
-	{icon: 'i-lucide-calendar', label: formatDate(photo.value.date)}
+	{icon: 'i-lucide-camera', label: p?.camera},
+	{icon: 'i-lucide-focus', label: p?.lens},
+	{icon: 'i-lucide-aperture', label: `f/${p?.aperture}`},
+	{icon: 'i-lucide-timer', label: p?.shutterSpeed},
+	{icon: 'i-lucide-map-pin', label: photo.value?.location},
+	{icon: 'i-lucide-calendar', label: formatDate(photo.value?.date)}
 ]
 </script>
 
