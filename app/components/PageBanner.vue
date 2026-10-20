@@ -5,7 +5,7 @@ defineProps<{ headline?: string, title: string, description?: string, art: strin
 <template>
 	<section class="relative isolate overflow-hidden border-b border-default bg-black text-white">
 		<img :src="art" alt="" class="absolute inset-0 -z-10 size-full object-cover opacity-60">
-		<div class="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/70 to-black/10"/>
+		<div class="absolute inset-0 -z-10 bg-linear-to-r from-black via-black/70 to-black/10"/>
 		<UContainer class="py-20 sm:py-28">
 			<p v-if="headline" class="font-mono text-sm text-primary mb-3">{{ headline }}</p>
 			<h1 class="font-display text-4xl sm:text-6xl font-medium tracking-tighter">{{ title }}</h1>

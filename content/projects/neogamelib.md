@@ -1,7 +1,7 @@
 ---
 title: NeoGameLib
 description: A small library for MonoGame that packs a lot of punch.
-date: 2026-10-16T00:00:00.000Z
+date: 2026-10-16
 navigation:
   icon: i-lucide-gamepad-2
 progress: release
@@ -9,8 +9,8 @@ repository:
   repoUsername: CTRL-Neo-Studios
   repoName: NeoGameLib
 seo:
-  title: Neogamelib file
-  description: "A "
+  title: NeoGameLib
+  description: A small library for MonoGame that packs a lot of punch.
 ---
 
 # Introduction
