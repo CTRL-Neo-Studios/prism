@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "apps:access": "bun layers/apps/scripts/access.ts"
   },
   "dependencies": {
     "@comark/nuxt": "0.7.0",
@@ -20,17 +21,22 @@
     "@tiptap/extension-node-range": "^3.32.0",
     "@tiptap/y-tiptap": "^3.0.10",
     "@vueuse/nuxt": "15.0.0",
+    "aws4fetch": "^1.0.20",
     "better-sqlite3": "^13.0.3",
+    "jose": "^6.2.13",
     "nuxt": "^4.6.2",
     "nuxt-studio": "1.8.0",
+    "semver": "^7.8.5",
     "tailwindcss": "^4.3.3",
     "typescript": "6.0.3",
     "vue": "^3.5.44",
     "vue-router": "^5.4.0",
-    "yjs": "^13.6.33"
+    "yjs": "^13.6.33",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.20"
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/semver": "^7.8.0"
   },
   "trustedDependencies": [
     "@parcel/watcher",

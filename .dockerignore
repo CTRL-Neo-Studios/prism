@@ -1,0 +1,20 @@
+# secrets must never enter an image; runtime env provides them
+.env
+.env.*
+!.env.example
+
+# local state and build output, rebuilt inside the image
+node_modules
+.nuxt
+.output
+.data
+.nitro
+.cache
+dist
+
+.git
+.idea
+.DS_Store
+.agents
+.autohand
+.claude

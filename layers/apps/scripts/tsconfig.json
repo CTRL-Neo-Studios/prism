@@ -1,0 +1,14 @@
+{
+	// Standalone scripts (bun run apps:*) and the Nitro-free shared code they import; Nuxt's tsconfigs don't cover scripts/.
+	"compilerOptions": {
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"target": "es2022",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"skipLibCheck": true,
+		"noEmit": true,
+		"types": ["node"]
+	},
+	"include": ["./**/*.ts", "../shared/**/*.ts"]
+}

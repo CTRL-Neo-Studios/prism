@@ -8,7 +8,7 @@ COPY package*.json ./
 RUN node --max-old-space-size=8000
 COPY . .
 
-RUN bun install
+RUN bun install --frozen-lockfile
 RUN bun pm trust --all
 RUN bun run build
 
