@@ -4,6 +4,9 @@ Update feeds, channels, downloads and CI publishing for the studio's Tauri apps,
 A self-contained Nuxt layer: Nuxt auto-registers it from `layers/`, and every route lives under `/apps`, so it can
 move into its own Nuxt service unchanged (copy this folder, the shared workflow and the `NUXT_APPS_*` env vars).
 
+**Start with the guide:** [`docs/apps-release-guide.md`](../../docs/apps-release-guide.md) covers versioning, channels,
+access tokens, onboarding a new app and reusing the service from other Nuxt projects. This README is the reference.
+
 ## Routes
 
 | Route | For | Responses |
