@@ -16,8 +16,8 @@ export interface AppConfig {
  * never something Nuxt Studio content editors can change.
  */
 export const appRegistry: Record<string, AppConfig> = {
-	'neomap-editor': {
-		repo: 'CTRL-Neo-Studios/neomap-editor',
+	'neogame-editor': {
+		repo: 'CTRL-Neo-Studios/neogame-editor',
 		channels: {
 			stable: {access: 'public'},
 			beta: {access: 'public', includes: ['stable']},
