@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 	// unchanged; every secret (DB URL, S3 keys, admin token) is set at runtime by NUXT_TAURI_UPDATER_* env vars.
 	tauriUpdater: {
 		prefix: '/apps',
-		database: {connector: 'libsql'},
+		database: {connector: 'postgresql'},
 		s3: {keyPrefix: 'apps'},
 		headers: {channel: 'x-neo-channel', token: 'x-neo-token'},
 		oidc: {
@@ -31,8 +31,7 @@ export default defineNuxtConfig({
 			// prism's tauri-release.yml now forwards to the module's workflow, so GitHub should report the module's file as
 			// job_workflow_ref. prism's own entry stays until a real publish confirms that, then drop it.
 			allowedWorkflows: [
-				'CTRL-Neo-Studios/tauri-updater-backend/.github/workflows/tauri-release.yml@refs/heads/main',
-				'CTRL-Neo-Studios/prism/.github/workflows/tauri-release.yml@refs/heads/main'
+				'CTRL-Neo-Studios/tauri-updater-backend/.github/workflows/tauri-release.yml@refs/heads/main'
 			]
 		}
 	},
