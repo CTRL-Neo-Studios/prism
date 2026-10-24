@@ -1,23 +1,13 @@
-# Shared release pipeline for the studio's Tauri apps. Call it from an app repo:
-#
-#   on: {push: {branches: [main]}}
-#   jobs:
-#     release:
-#       uses: CTRL-Neo-Studios/prism/.github/workflows/tauri-release.yml@main
-#       with: {app: neomap-editor}
-#       secrets: inherit
-#       permissions: {contents: read, id-token: write}
-#
-# Builds Windows (NSIS), macOS (universal) and Linux (AppImage, best-effort), then publishes to
-# https://www.ctrl-neo.dev/apps. The version comes from src-tauri/tauri.conf.json: bump it to release; an unchanged
-# version builds but is skipped at publish. Prism only accepts this workflow at @main (see layers/apps/server/utils/oidc.ts).
+# Kept so app repos calling CTRL-Neo-Studios/prism/.github/workflows/tauri-release.yml@main keep working unchanged.
+# It forwards to the module's reusable workflow with prism's endpoint and audience. New app repos should call
+# CTRL-Neo-Studios/tauri-updater-backend/.github/workflows/tauri-release.yml@main directly (see docs/apps-release-guide.md).
 name: Tauri release
 
 on:
   workflow_call:
     inputs:
       app:
-        description: App slug registered in prism (layers/apps/server/utils/apps.ts)
+        description: App slug registered in prism's updater admin
         required: true
         type: string
       channel:
@@ -36,127 +26,16 @@ on:
       TAURI_SIGNING_PRIVATE_KEY_PASSWORD:
         required: false
 
-env:
-  APPS_API: https://www.ctrl-neo.dev
-
 jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - os: windows-latest
-            platforms: windows-x86_64
-            args: --bundles nsis
-            bundle: src-tauri/target/release/bundle
-          - os: macos-latest
-            # one universal build serves Apple Silicon and Intel
-            platforms: darwin-aarch64,darwin-x86_64
-            args: --target universal-apple-darwin --bundles app,dmg
-            rust-targets: aarch64-apple-darwin,x86_64-apple-darwin
-            bundle: src-tauri/target/universal-apple-darwin/release/bundle
-          - os: ubuntu-22.04
-            platforms: linux-x86_64
-            args: --bundles appimage
-            bundle: src-tauri/target/release/bundle
-    name: build (${{ matrix.platforms }})
-    runs-on: ${{ matrix.os }}
-    # linux is best-effort: publish skips platforms that didn't build
-    continue-on-error: ${{ matrix.os == 'ubuntu-22.04' }}
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Release tooling
-        uses: actions/checkout@v4
-        with:
-          # tooling at the exact commit of this workflow file, so a script change can't drift from it
-          repository: ${{ job.workflow_repository }}
-          ref: ${{ job.workflow_sha }}
-          path: .prism
-          sparse-checkout: layers/apps/scripts
-
-      - name: Linux system dependencies
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev libxdo-dev libssl-dev patchelf
-
-      - uses: oven-sh/setup-bun@v2
-
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.rust-targets }}
-
-      - uses: swatinem/rust-cache@v2
-        with:
-          workspaces: src-tauri -> target
-          key: ${{ matrix.os }}
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Read version
-        id: version
-        shell: bash
-        run: echo "value=$(bun -e 'console.log(require("./src-tauri/tauri.conf.json").version)')" >> "$GITHUB_OUTPUT"
-
-      # beforeBuildCommand in tauri.conf.json builds the frontend
-      - name: Build app
-        env:
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-        run: bun run tauri build ${{ matrix.args }}
-
-      - name: Collect bundles
-        shell: bash
-        run: bun .prism/layers/apps/scripts/release.ts collect "${{ matrix.platforms }}" "${{ matrix.bundle }}" "${{ inputs.app }}" "${{ steps.version.outputs.value }}" release
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: release-${{ runner.os }}
-          path: release
-          if-no-files-found: error
-          retention-days: 7
-
-  publish:
-    needs: build
-    # build is green even when linux fails (continue-on-error); publish whatever was collected
-    if: ${{ !cancelled() }}
-    runs-on: ubuntu-latest
+  release:
+    uses: CTRL-Neo-Studios/tauri-updater-backend/.github/workflows/tauri-release.yml@main
+    with:
+      app: ${{ inputs.app }}
+      api: https://www.ctrl-neo.dev/apps
+      audience: ctrl-neo-apps
+      channel: ${{ inputs.channel }}
+      notes: ${{ inputs.notes }}
+    secrets: inherit
     permissions:
       contents: read
       id-token: write
-    # never cancel a publish half-way; runs queue per app instead
-    concurrency:
-      group: tauri-release-${{ inputs.app }}
-      cancel-in-progress: false
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          sparse-checkout: src-tauri/tauri.conf.json
-          sparse-checkout-cone-mode: false
-
-      - name: Release tooling
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ job.workflow_repository }}
-          ref: ${{ job.workflow_sha }}
-          path: .prism
-          sparse-checkout: layers/apps/scripts
-
-      - uses: oven-sh/setup-bun@v2
-
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: release-*
-          path: release
-          merge-multiple: true
-
-      - name: Publish
-        env:
-          NOTES: ${{ inputs.notes || github.event.head_commit.message }}
-        run: |
-          version=$(bun -e 'console.log(require("./src-tauri/tauri.conf.json").version)')
-          bun .prism/layers/apps/scripts/release.ts publish "$APPS_API" "${{ inputs.app }}" "$version" release --channel "${{ inputs.channel }}" --notes "$NOTES"
