@@ -27,9 +27,6 @@ export default defineNuxtConfig({
 		s3: {keyPrefix: 'apps'},
 		headers: {channel: 'x-neo-channel', token: 'x-neo-token'},
 		oidc: {
-			audience: 'ctrl-neo-apps',
-			// prism's tauri-release.yml now forwards to the module's workflow, so GitHub should report the module's file as
-			// job_workflow_ref. prism's own entry stays until a real publish confirms that, then drop it.
 			allowedWorkflows: [
 				'CTRL-Neo-Studios/tauri-updater-backend/.github/workflows/tauri-release.yml@refs/heads/main'
 			]
