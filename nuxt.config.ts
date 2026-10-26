@@ -4,11 +4,6 @@ export default defineNuxtConfig({
 	devtools: {enabled: true},
 	css: ['~/assets/css/main.css'],
 	modules: ['@nuxt/content', '@nuxt/image', '@nuxt/ui', '@nuxtjs/mdc', 'nuxt-studio', '@vueuse/nuxt', '@comark/nuxt', 'tauri-updater-backend'],
-	content: {
-		preview: {
-			api: 'https://api.nuxt.studio'
-		}
-	},
 	studio: {
 		repository: {
 			provider: 'github',
