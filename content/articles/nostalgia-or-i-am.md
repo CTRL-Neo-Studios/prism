@@ -1,10 +1,10 @@
 ---
 title: Nostalgia, Or I Am
-tags:
-  - reports-of-play
-description: MMOs, Nostalgia, and Enshittifiation
 author: Type-32
 date: '2026-11-02'
+description: MMOs, Nostalgia, and Enshittifiation
+tags:
+  - reports-of-play
 ---
 
 Lawra Clark said in her lecture that Ultima Online is one percent Ultima and 99 percent Online. I think that ratio describes somewhat accurately of the game’s structure. It’s about players instead of quests or missions or escorts – the world is designed to make players encounter, and then the game gives you tools to sustain the connection that emerged from that encounter. That’s why an MMO is never really “finished” in a way that a single-player game is. It only “finishes” when people stop showing up, and it’s ending is quieter, and more gruesome than a simple credits screen.
