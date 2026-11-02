@@ -15,7 +15,7 @@ README; this page covers only what is specific to prism.
 | Admin UI: apps, channels, tokens, releases, cleanup | `https://www.ctrl-neo.dev/__updater-admin` |
 | Config | `tauriUpdater` in `nuxt.config.ts` |
 | Secrets | `NUXT_TAURI_UPDATER_*` runtime env vars, see `.env.example` |
-| Metadata (apps, channels, users, releases) | external libSQL/Turso database (`NUXT_TAURI_UPDATER_DATABASE_OPTIONS_URL`) |
+| Metadata (apps, channels, users, releases) | external PostgreSQL database (`NUXT_TAURI_UPDATER_DATABASE_OPTIONS_URL`) |
 | Binaries | the studio's private S3 bucket, under `apps/<app>/<version>/` |
 
 The database is external on purpose: a SQLite file inside the deployed project is wiped by every redeploy.
@@ -49,6 +49,10 @@ jobs:
 Use `www.` in `api`: the bare domain redirects, and the redirect drops the token. Register the app in the admin UI
 first: pick its GitHub repo and release branch (it lists the repo's branches as you type). Its channels are managed
 there too. Only the workflows in `tauriUpdater.oidc.allowedWorkflows` may publish.
+
+The version picks the channel: `1.3.0` publishes to `stable`, `1.3.0-beta.1` to `beta`, `1.3.0-insider.2` to
+`insider`. The channel must exist on the app first. Details, including the workflow's `channel` override: the module's
+[setup guide](https://github.com/CTRL-Neo-Studios/tauri-updater-backend/blob/main/docs/setup-guide.md#publish-to-beta-or-any-channel-instead-of-stable).
 
 ## One-time migration from the old layer
 
