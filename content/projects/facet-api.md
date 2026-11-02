@@ -1,19 +1,18 @@
 ---
 title: Facet API
+date: '2025-08-29'
 description: A unified class for managing callbacks and cutting down references to MonoBehaviours.
-seo:
-  title: Facet-api file
-  description: "A unified class for managing callbacks and cutting down references to MonoBehaviours. "
-tags: []
-date: 2025-08-29
+navigation:
+  icon: i-ic-sharp-api
 progress: release
 repository:
   repoUsername: CTRL-Neo-Studios
   repoName: facet-api
   showIssues: true
   showWiki: true
-navigation:
-  icon: i-ic-sharp-api
+seo:
+  title: Facet-api file
+  description: 'A unified class for managing callbacks and cutting down references to MonoBehaviours. '
 ---
 
 Facet API is a simple plug-and-pull library for managing your callbacks in C# to avoid annoying external references to other classes or objects.

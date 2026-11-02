@@ -1,13 +1,12 @@
 ---
 title: YAML Editor Form
+date: '2026-01-29'
 description: A powerful, schema-driven YAML/frontmatter editor for Nuxt v4 with Nuxt UI components. Supports custom field types, nested structures, and extensible type system.
-tags: []
+progress: beta
 repository:
   repoUsername: CTRL-Neo-Studios
   repoName: yaml-editor-form
   showIssues: true
-progress: beta
-date: 2026-01-29
 ---
 
 > A powerful, schema-driven YAML/frontmatter editor for Nuxt v4 with Nuxt UI components. Supports custom field types, nested structures, and extensible type system.
@@ -61,7 +60,6 @@ The YAML Form Editor is a Nuxt Module that provides components for editing YAML 
 ### Core Features
 
 - **Auto Type Detection** - Automatically detects types from existing values
-
 - **Type Conversion** - Convert between compatible types (preserves data when possible)
 - **Field Renaming** - Rename object fields and array items inline
 - **Add/Remove Fields** - Dynamic field management with type selection

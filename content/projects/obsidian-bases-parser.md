@@ -1,8 +1,7 @@
 ---
 title: Obsidian Bases Parser
+date: '2026-02-02'
 description: A complete TypeScript implementation for Obsidian Bases (.base files) including schema definitions, lexer, parser, evaluator, and reactive query system.
-tags: []
-date: 2026-02-02
 progress: alpha
 repository:
   repoUsername: Type-32
@@ -436,26 +435,26 @@ obsidian-bases-parser/
 
 When you parse a filter expression using `parseFilterExpression()`, you get a `FilterExpObject` with these accessible properties:
 
-| Property              | Type                    | Description                                           |
-| --------------------- | ----------------------- | ----------------------------------------------------- |
-| `raw`                 | `string`                | The original filter expression                        |
-| `expressionType`      | `ExpressionType`        | Type: 'comparison', 'boolean', 'function\_call', etc. |
-| `ast`                 | `ASTExpression`         | The parsed AST                                        |
-| `properties`          | `PropertyReference[]`   | All property references                               |
-| `functionCalls`       | `FunctionCall[]`        | All function calls                                    |
-| `comparisons`         | `ComparisonOperation[]` | All comparison operations                             |
-| `literals`            | `LiteralValue[]`        | All literal values                                    |
-| `hasBooleanOperators` | `boolean`               | Has `&&`, `||`, or `!`                                |
-| `hasDateArithmetic`   | `boolean`               | Has date arithmetic like `now() - "7d"`               |
-| `usesThisReference`   | `boolean`               | Uses `this` keyword                                   |
-| `fileMethods`         | `string[]`              | File methods used (e.g., 'hasTag', 'inFolder')        |
-| `noteProperties`      | `string[]`              | Note properties referenced                            |
-| `fileProperties`      | `string[]`              | File properties referenced                            |
-| `formulaProperties`   | `string[]`              | Formula properties referenced                         |
-| `referencedTags`      | `string[]`              | Tags from `file.hasTag()` calls                       |
-| `referencedFolders`   | `string[]`              | Folders from `file.inFolder()` calls                  |
-| `isValid`             | `boolean`               | Whether parsing succeeded                             |
-| `errors`              | `string[]`              | Parse errors if any                                   |
+| Property              | Type                    | Description                                          |
+| --------------------- | ----------------------- | ---------------------------------------------------- |
+| `raw`                 | `string`                | The original filter expression                       |
+| `expressionType`      | `ExpressionType`        | Type: 'comparison', 'boolean', 'function_call', etc. |
+| `ast`                 | `ASTExpression`         | The parsed AST                                       |
+| `properties`          | `PropertyReference[]`   | All property references                              |
+| `functionCalls`       | `FunctionCall[]`        | All function calls                                   |
+| `comparisons`         | `ComparisonOperation[]` | All comparison operations                            |
+| `literals`            | `LiteralValue[]`        | All literal values                                   |
+| `hasBooleanOperators` | `boolean`               | Has `&&`, `                                          |
+| `hasDateArithmetic`   | `boolean`               | Has date arithmetic like `now() - "7d"`              |
+| `usesThisReference`   | `boolean`               | Uses `this` keyword                                  |
+| `fileMethods`         | `string[]`              | File methods used (e.g., 'hasTag', 'inFolder')       |
+| `noteProperties`      | `string[]`              | Note properties referenced                           |
+| `fileProperties`      | `string[]`              | File properties referenced                           |
+| `formulaProperties`   | `string[]`              | Formula properties referenced                        |
+| `referencedTags`      | `string[]`              | Tags from `file.hasTag()` calls                      |
+| `referencedFolders`   | `string[]`              | Folders from `file.inFolder()` calls                 |
+| `isValid`             | `boolean`               | Whether parsing succeeded                            |
+| `errors`              | `string[]`              | Parse errors if any                                  |
 
 ### Parser Classes
 
@@ -640,7 +639,7 @@ console.log(results.value.items);
 
 You can create a reactive base from existing YAML:
 
-```typescript
+~~~typescript
 import { createReactiveBaseFromYAML } from './index';
 
 const yaml = `
@@ -667,7 +666,7 @@ base.addTableView('High Priority', {
 
 // Save back to YAML
 const updatedYaml = base.toYAML();
-```
+~~~
 
 ### Builder Pattern vs Reactive Base
 
@@ -734,7 +733,7 @@ The reactive query system integrates with Vue's reactivity system to provide aut
 
 ### Basic Usage
 
-```typescript
+~~~typescript
 import { ref } from 'vue';
 import { readBase, useBaseQuery, BaseSource } from './index';
 
@@ -786,11 +785,11 @@ const activeTasks = getViewResults('Active Tasks');
 // activeTasks.value.totalCount - total before limit
 // activeTasks.value.groups - grouped items (if groupBy specified)
 // activeTasks.value.summaries - calculated summaries
-```
+~~~
 
 ### Vue Component Example
 
-```vue
+~~~vue
 <template>
   <div>
     <h1>Tasks ({{ taskCount }})</h1>
@@ -839,7 +838,7 @@ function addTask() {
   // tasks and taskCount automatically update!
 }
 </script>
-```
+~~~
 
 ### useBase() - Unified Base Management
 

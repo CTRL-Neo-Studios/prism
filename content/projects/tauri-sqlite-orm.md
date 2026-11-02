@@ -1,17 +1,15 @@
 ---
 title: Tauri SQLite ORM
-description: "Simple Drizzle-like ORM Wrapper on top of Tauri V2's SQLite JS API Plugin. "
-seo:
-  title: Tauri-sqlite-orm file
-  description: "Simple Drizzle-like ORM Wrapper on top of Tauri V2's SQLite JS API Plugin. "
-date: 2025-08-26
-tags: []
+date: '2025-08-26'
+description: 'Simple Drizzle-like ORM Wrapper on top of Tauri V2''s SQLite JS API Plugin. '
 progress: alpha
 repository:
   repoUsername: Type-32
   repoName: tauri-sqlite-orm
   showIssues: true
   showWiki: true
+seo:
+  title: Tauri-sqlite-orm file
 ---
 
 A Drizzle-like TypeScript ORM tailored for Tauri v2's `@tauri-apps/plugin-sql` (SQLite). It provides a simple, type-safe query builder and migration tools to help you manage your database with ease.

@@ -1,19 +1,17 @@
 ---
 title: SimpleCLI
-description: "An extremely simple CLI building tool for CSharp projects. "
-seo:
-  title: Simple-cli file
-  description: "An extremely simple CLI building tool for CSharp projects. "
-date: 2025-04-15
-tags: []
+date: '2025-04-15'
+description: 'An extremely simple CLI building tool for CSharp projects. '
+navigation:
+  icon: i-lucide-code
 progress: release
 repository:
   repoUsername: CTRL-Neo-Studios
   repoName: simple-cli
   showIssues: true
   showWiki: true
-navigation:
-  icon: i-lucide-code
+seo:
+  title: Simple-cli file
 ---
 
 An extremely simple CLI building tool for CSharp projects.
