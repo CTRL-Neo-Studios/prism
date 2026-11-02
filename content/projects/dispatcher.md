@@ -329,31 +329,27 @@ events.on('user.logout', () => {
 ## Contribution
 
 ::accordion{type="single"}
-  :::accordion-item
-  ---
-  description: Commands for Local Dev
-  label: Local Development
-  ---
+  :::accordion-item{description="Commands for Local Dev" label="Local Development"}
   ```bash
   # Install dependencies
   bun i
-
+  
   # Generate type stubs
   bun run dev:prepare
-
+  
   # Develop with the playground
   bun run dev
-
+  
   # Build the playground
   bun run dev:build
-
+  
   # Run ESLint
   bun run lint
-
+  
   # Run Vitest
   bun run test
   bun run test:watch
-
+  
   # Release new version
   bun run release
   ```
