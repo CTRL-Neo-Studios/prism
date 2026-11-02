@@ -5,7 +5,6 @@ date: '2025-10-13'
 description: A personal manifesto on games.
 seo:
   title: A Reactive Container Then Something Much More
-  description: A personal manifesto on games.
 ---
 
 I want to start small with a definition that we could hold ourselves with one hand. Then we’ll slowly open it, finger by finger, until it expands bigger than the games it describes.

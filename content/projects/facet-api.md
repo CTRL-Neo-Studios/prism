@@ -11,7 +11,6 @@ repository:
   showIssues: true
   showWiki: true
 seo:
-  title: Facet API
   description: 'A unified class for managing callbacks and cutting down references to MonoBehaviours. '
 ---
 
