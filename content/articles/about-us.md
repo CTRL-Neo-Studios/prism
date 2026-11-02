@@ -1,7 +1,7 @@
 ---
 title: About Us
 author: Type-32
-date: 2025-10-13T00:00:00.000Z
+date: '2025-10-13'
 description: About me and the studio.
 ---
 

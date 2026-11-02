@@ -1,7 +1,7 @@
 ---
 title: A Reactive Container, Then Something Much More
 author: Type-32
-date: 2025-10-13T00:00:00.000Z
+date: '2025-10-13'
 description: A personal manifesto on games.
 seo:
   title: A Reactive Container Then Something Much More

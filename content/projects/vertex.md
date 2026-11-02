@@ -1,7 +1,7 @@
 ---
 title: Vertex
-description: A fast Obsidian-Flavored Markdown Editor for workspaces and single-files.
-date: 2025-07-25
+description: 'A fast Obsidian-Flavored Markdown Editor for workspaces and single-files.'
+date: '2025-07-25'
 image: /projects/vertex/vertexmarkdowneditor-example.png
 progress: alpha
 repository:
