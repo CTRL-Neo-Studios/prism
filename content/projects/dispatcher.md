@@ -1,6 +1,6 @@
 ---
 title: Dispatcher
-date: 2026-01-14T00:00:00.000Z
+date: '2026-01-14'
 description: A simple event dispatcher for Nuxt.
 navigation:
   icon: i-lucide-git-branch
@@ -10,10 +10,6 @@ repository:
   repoName: dispatcher
   showIssues: true
   showWiki: false
-seo:
-  title: Dispatcher
-  description: A type-safe, channel-based event dispatcher system for Nuxt with automatic cleanup and flexible event handling.
-tags: []
 ---
 
 A type-safe, channel-based event dispatcher system for Nuxt with automatic cleanup and flexible event handling.

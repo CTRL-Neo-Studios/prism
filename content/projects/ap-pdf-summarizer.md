@@ -1,6 +1,6 @@
 ---
 title: AP PDF Summarizer
-date: 2026-01-01T00:00:00.000Z
+date: '2026-01-01'
 description: A quick and simple summarizer powered by AI using OpenRouter for your AP subject PDFs.
 image: /projects/ap-pdf-summarizer/pin.png
 navigation:
@@ -11,7 +11,6 @@ repository:
   repoName: ap-pdf-summarizer
   showIssues: true
   showWiki: true
-tags: []
 ---
 
 ![pin](/projects/ap-pdf-summarizer/pin.png)

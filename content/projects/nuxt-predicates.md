@@ -1,10 +1,9 @@
 ---
 title: Nuxt Predicates
 description: Composable, reactive, and type-safe logic engine for Nuxt 4 & Tauri.
-tags: []
 navigation:
   icon: i-lucide-presentation
-date: 2026-01-15
+date: '2026-01-15'
 progress: release
 repository:
   repoUsername: CTRL-Neo-Studios
