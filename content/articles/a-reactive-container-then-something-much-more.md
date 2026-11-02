@@ -5,6 +5,9 @@ date: '2025-10-13'
 description: A personal manifesto on games.
 seo:
   title: A Reactive Container Then Something Much More
+tags:
+  - manifesto
+  - games-and-game-design
 ---
 
 I want to start small with a definition that we could hold ourselves with one hand. Then we’ll slowly open it, finger by finger, until it expands bigger than the games it describes.
@@ -39,12 +42,12 @@ So, this is what I believe: Games aren’t stories with buttons, paintings you c
 
 ## Footnotes
 
-1. Merriam-Webster, “Whist Definition & Meaning.” [↩](#user-content-fnref-1)
-2. Courtney, *English Whist and English Whist Players*. [↩](#user-content-fnref-2)
-3. Professor Fernandez-Vara, lecture on narrative in games, Intro to Games 101. No separate source was listed in the original Works Cited. [↩](#user-content-fnref-3)
-4. Professor Zimmerman, lecture on play as “free movement within a more rigid system,” Intro to Games 101. No separate source was listed in the original Works Cited. [↩](#user-content-fnref-4)
-5. Le and Cliffe, *The Official Counter-Strike Web Site*. [↩](#user-content-fnref-5)
-6. Professor Fuchs, lecture on game evolution as “sex, death, and mistakes,” Intro to Games 101. No separate source was listed in the original Works Cited. [↩](#user-content-fnref-6)
-7. Liz Ryerson, lecture on “kusoge,” Intro to Games 101. No separate source was listed in the original Works Cited. [↩](#user-content-fnref-7)
-8. Forster, “Art for Art’s Sake,” pp. 31. [↩](#user-content-fnref-8)
-9. Newell, in *Half-Life: 25th Anniversary Documentary*. [↩](#user-content-fnref-9)
+1. Merriam-Webster, “Whist Definition & Meaning.” ↩
+2. Courtney, *English Whist and English Whist Players*. ↩
+3. Professor Fernandez-Vara, lecture on narrative in games, Intro to Games 101. No separate source was listed in the original Works Cited. ↩
+4. Professor Zimmerman, lecture on play as “free movement within a more rigid system,” Intro to Games 101. No separate source was listed in the original Works Cited. ↩
+5. Le and Cliffe, *The Official Counter-Strike Web Site*. ↩
+6. Professor Fuchs, lecture on game evolution as “sex, death, and mistakes,” Intro to Games 101. No separate source was listed in the original Works Cited. ↩
+7. Liz Ryerson, lecture on “kusoge,” Intro to Games 101. No separate source was listed in the original Works Cited. ↩
+8. Forster, “Art for Art’s Sake,” pp. 31. ↩
+9. Newell, in *Half-Life: 25th Anniversary Documentary*. ↩
